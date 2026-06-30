@@ -1,4 +1,4 @@
-$$ \mathrm{SCA}(\mathbf x) = \mathbf x * W \, \text{global-avg-pool}(\mathbf x) $$
+$$ \mathrm{SCA}(\mathbf x) = \mathbf x * W \text{ global-avg-pool}(\mathbf x) $$
 $$ \mathrm {SimpleGate} (\mathbf x) = \mathbf x_1 \odot \mathbf x_2$$
 $$\mathrm{GELU}(x) = x\Phi(x), \quad \text{where} \quad \Phi(x) = \int_{-\infty}^x \frac{1}{\sqrt{2\pi}} e^{-x^2/2}$$
 $$ \mathrm{SSIM} = \frac {(2\mu_x \mu_y+c_1)(2\sigma_{xy}+c_2)} {(\mu_x^2+\mu_y^2+c_1)(\sigma_x^2+\sigma_y^2+c_2)} $$
