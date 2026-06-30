@@ -3,7 +3,7 @@ $$ \mathrm {SimpleGate} (\mathbf x) = \mathbf x_1 \odot \mathbf x_2$$
 $$\mathrm{GELU}(x) = x\Phi(x), \quad \text{where} \quad \Phi(x) = \int_{-\infty}^x \frac{1}{\sqrt{2\pi}} e^{-t^2/2} dt$$
 $$ \mathrm{SSIM} = \frac {(2\mu_x \mu_y+c_1)(2\sigma_{xy}+c_2)} {(\mu_x^2+\mu_y^2+c_1)(\sigma_x^2+\sigma_y^2+c_2)} $$
 
-To implement SSIM using convolutions, we consider the values in the $x$ and $y$ patches to be values of a random variable $X$ and $Y$ respectively, such that $\mu_x = E(X)$, $\sigma_x^2 = \mathrm{Var}(X)$, and $\sigma_{xy}=\mathrm{Cov}$. We then use the following facts: 
+To implement SSIM using convolutions, we consider the values in the $x$ and $y$ patches to be values of a random variable $X$ and $Y$ respectively, such that $\mu_x = E(X)$, $\sigma_x^2 = \mathrm{Var}(X)$, and $\sigma_{xy}=\mathrm{Cov}(X,Y)$. We then use the following facts: 
 - $E(X)= x* w$, where $w$ is a kernel with weights summing to $1$
 - $\mathrm{Var}(X) = E(X^2)-[E(X)]^2$
 - $\mathrm{Cov}(X,Y)=E(XY)-E(X)E(Y)$
