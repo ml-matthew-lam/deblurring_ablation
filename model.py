@@ -36,7 +36,7 @@ class GELUBlock(nn.Module):
         self.norm = nn.LayerNorm(n_channels)
         self.conv1 = nn.Conv2d(n_channels, n_channels, kernel_size = 1)
         self.conv2 = nn.Conv2d(n_channels, n_channels, groups = n_channels, kernel_size = 3, padding = 1, padding_mode='reflect')
-        self.attn = SCA(n_channels)
+        self.attn = CA(n_channels)
         self.conv3 = nn.Conv2d(n_channels, n_channels, kernel_size=1)
     def forward(self, x):
         residual = x
