@@ -30,13 +30,13 @@ class SCA(nn.Module):
         return output
 
 
-class BaselineBlock(nn.Module):
+class GELUBlock(nn.Module):
     def __init__(self, n_channels):
         super().__init__()
         self.norm = nn.LayerNorm(n_channels)
         self.conv1 = nn.Conv2d(n_channels, n_channels, kernel_size = 1)
         self.conv2 = nn.Conv2d(n_channels, n_channels, groups = n_channels, kernel_size = 3, padding = 1, padding_mode='reflect')
-        self.attn = CA(n_channels)
+        self.attn = SCA(n_channels)
         self.conv3 = nn.Conv2d(n_channels, n_channels, kernel_size=1)
     def forward(self, x):
         residual = x
@@ -172,7 +172,7 @@ class UNet(nn.Module): # note: height and width of image both need to be divisib
 
 
 # if __name__ == "__main__":
-#     blocks = [BaselineBlock, NAFBlock]
+#     blocks = [GELUBlock, NAFBlock]
 #     for block in blocks:
 #         model = UNet(block, 32)
 #         output = model(torch.randn(8, 3, 256, 256))
