@@ -29,23 +29,37 @@ class SCA(nn.Module):
         output = x * output
         return output
 
+# channel-first layer normalization
+class LayerNorm2d(nn.Module):
+    def __init__(self, n_channels, epsilon=1e-6):
+        super().__init__()
+        self.gamma = nn.Parameter(torch.ones(n_channels)) 
+        self.beta = nn.Parameter(torch.zeros(n_channels))
+        self.epsilon = epsilon  
+
+    def forward(self, x):
+        # mean and variance calculations along channel dimension
+        mu = x.mean(1, keepdim=True)
+        var = (x-mu).pow(2).mean(1, keepdim=True)
+
+        # apply the normalization, then the learned parameters
+        x = (x-mu) / torch.sqrt(var + self.epsilon)
+        x = self.gamma[:, None, None] * x + self.beta[:, None, None]
+
+        return x
+
 
 class GELUBlock(nn.Module):
     def __init__(self, n_channels):
         super().__init__()
-        self.norm = nn.LayerNorm(n_channels)
+        self.norm = LayerNorm2d(n_channels)
         self.conv1 = nn.Conv2d(n_channels, n_channels, kernel_size = 1)
         self.conv2 = nn.Conv2d(n_channels, n_channels, groups = n_channels, kernel_size = 3, padding = 1, padding_mode='reflect')
         self.attn = SCA(n_channels)
         self.conv3 = nn.Conv2d(n_channels, n_channels, kernel_size=1)
     def forward(self, x):
         residual = x
-
-        # LayerNorm
-        x = x.permute(0,2,3,1)
         x = self.norm(x)
-        x = x.permute(0,3,1,2)
-
         x = self.conv1(x)
         x = self.conv2(x)
         x = F.gelu(x)
@@ -57,19 +71,14 @@ class GELUBlock(nn.Module):
 class NAFBlock(nn.Module):
     def __init__(self, n_channels):
         super().__init__()
-        self.norm = nn.LayerNorm(n_channels)
+        self.norm = LayerNorm2d(n_channels)
         self.conv1 = nn.Conv2d(n_channels, 2*n_channels, kernel_size = 1)
         self.conv2 = nn.Conv2d(2*n_channels, 2*n_channels, groups = 2*n_channels, kernel_size = 3, padding = 1, padding_mode='reflect')
         self.attn = SCA(n_channels)
         self.conv3 = nn.Conv2d(n_channels, n_channels, kernel_size=1)
     def forward(self, x):
         residual = x
-
-        # LayerNorm
-        x = x.permute(0,2,3,1)
         x = self.norm(x)
-        x = x.permute(0,3,1,2)
-
         x = self.conv1(x)
         x = self.conv2(x)
 
