@@ -37,7 +37,7 @@ class GoProDataset(Dataset):
             self.sharp_paths = list(self.sharp_paths)
         
             # calculate index at the boundary of the training and validation sets
-            split_index = round(len(self.blur_paths) * val_ratio)
+            split_index = int(len(self.blur_paths) * val_ratio)
             
             # slice the lists to isolate either the training or validation set
             if self.subset == "train":
