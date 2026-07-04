@@ -9,23 +9,43 @@ from PIL import Image
 
 
 class GoProDataset(Dataset):
-    def __init__(self, path, crop_size, train_or_test, max_images=None): 
+    def __init__(self, path, crop_size, subset, max_images=None, val_ratio=0.10): 
         ''' 
         Args:
             path (str): filepath to dataset
             crop_size (int): size of cropped images (must be a multiple of 8)
-            train_or_test (str): should be set to "train" or "test" to specify whether to access the training or testing sets
+            subset (str): should be set to "train", "val" or "test" to specify whether to access the training or testing sets
         '''
         self.crop_size = crop_size
         self.to_tensor = transforms.ToTensor()
 
-        split_dir = train_or_test
-        self.train_or_test = train_or_test
+        split_dir = "train" if subset in ["train", "val"] else "test"
+        self.subset = subset
 
         # searching through subfolders in the dataset
         search_path = os.path.join(path, split_dir, '*', 'blur', '*.png')
         self.blur_paths = sorted(glob(search_path))
         self.sharp_paths = [path.replace('blur', 'sharp') for path in self.blur_paths]
+
+        if self.subset in ["train", "val"]:
+            # deterministically shuffle the paths
+            combined = list(zip(self.blur_paths, self.sharp_paths))
+            random.Random(42).shuffle(combined) 
+            self.blur_paths, self.sharp_paths = zip(*combined)
+        
+            self.blur_paths = list(self.blur_paths)
+            self.sharp_paths = list(self.sharp_paths)
+        
+            # calculate index at the boundary of the training and validation sets
+            split_index = round(len(self.blur_paths) * val_ratio)
+            
+            # slice the lists to isolate either the training or validation set
+            if self.subset == "train":
+                self.blur_paths = self.blur_paths[split_index:]
+                self.sharp_paths = self.sharp_paths[split_index:]
+            else:
+                self.blur_paths = self.blur_paths[:split_index]
+                self.sharp_paths = self.sharp_paths[:split_index]
 
         if max_images is not None:
             self.blur_paths = self.blur_paths[:max_images]
@@ -39,7 +59,7 @@ class GoProDataset(Dataset):
         blur_img  = Image.open(self.blur_paths[i]).convert('RGB')
         sharp_img = Image.open(self.sharp_paths[i]).convert('RGB')
 
-        if self.train_or_test == "train":
+        if self.subset == "train":
             # crop images
             x, y, h, w = transforms.RandomCrop.get_params(blur_img, output_size = (self.crop_size, self.crop_size))
             blur_img = TF.crop(blur_img, x, y, h, w)
