@@ -44,8 +44,8 @@ class LossCombination(nn.Module):
         mu_x = F.conv2d(x_batch, self.window, groups=3)
         mu_y = F.conv2d(y_batch, self.window, groups=3)
 
-        var_x = F.conv2d(x_batch.pow(2), self.window, groups=3) - mu_x.pow(2)
-        var_y = F.conv2d(y_batch.pow(2), self.window, groups=3) - mu_y.pow(2)
+        var_x = F.relu(F.conv2d(x_batch.pow(2), self.window, groups=3) - mu_x.pow(2))
+        var_y = F.relu(F.conv2d(y_batch.pow(2), self.window, groups=3) - mu_y.pow(2))
 
         sigma_xy = F.conv2d(x_batch * y_batch, self.window, groups=3) - (mu_x * mu_y)
 
