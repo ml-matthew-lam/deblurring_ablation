@@ -20,10 +20,4 @@ See more about this project on [my website](https://matthewlam.me/deblurring/).
 
 ## Data Setup and Training with Google Colab
 
-This project is built for a workflow that uses Google Drive and Google Colab for training. This should be set up as follows: 
-
-1. **Upload:** Download the `GOPRO_Large.zip` archive and upload it to the root of your Google Drive.
-2. **Mount:** In your `train.ipynb`, mount your Google Drive:
-   ```python
-   from google.colab import drive
-   drive.mount('/content/drive')
+This project is built for a workflow that uses Google Drive and Google Colab for training. For this to work, download [train.ipynb](train.ipynb) and upload it to Google Drive. Then, download the [GOPRO_Large.zip](https://seungjunnah.github.io/Datasets/gopro) file and upload it to the root of your Google Drive before running [train.ipynb](train.ipynb) in Colab.
