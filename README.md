@@ -20,7 +20,6 @@ See more about this project on <a href="https://matthewlam.me/deblurring/" targe
 | 200-epoch GELU model | SimpleGate | 0.8088 | 26.43|
 | Blurry inputs | n/a | 0.7733 | 25.61|
 
----
 
 ## Repository Structure
 
@@ -31,7 +30,6 @@ The codebase is modularized to separate the architecture definitions from the tr
 * **`train.ipynb`**: The primary training notebook containing the optimization loop, learning rate scheduling, and Weights & Biases (wandb) logging.
 * **`test.py`**: Evaluation script to benchmark model variants, calculate peak system RAM usage/inference time, and generate comparative image triplets (Blurry vs. Restored vs. Sharp).
   
----
 
 ## Setup and Installation
 
