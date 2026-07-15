@@ -18,3 +18,12 @@ See more about this project on [my website](https://matthewlam.me/deblurring/).
 - [train.ipynb](train.ipynb): notebook containing code to train the models
 - [test.py](test.py): script to test the models and record testing metrics
 
+## Data Setup and Training with Google Colab
+
+This project is built for a workflow that uses Google Drive and Google Colab for training. This should be set up as follows: 
+
+1. **Upload:** Download the `GOPRO_Large.zip` archive and upload it to the root of your Google Drive.
+2. **Mount:** In your `train.ipynb`, mount your Google Drive:
+   ```python
+   from google.colab import drive
+   drive.mount('/content/drive')
