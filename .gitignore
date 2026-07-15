@@ -4,6 +4,12 @@
 # weights and checkpoints
 /checkpoints/
 /weights/
+*.pth
+
+# results
+/NAF_results/
+/GELU_results/
+/animations/
 
 # logs
 /runs/
@@ -29,3 +35,7 @@ Pipfile.lock
 ._*
 .Spotlight-V100
 .Trashes
+
+# other
+.vscode/
+animator.py
