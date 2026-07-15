@@ -11,7 +11,7 @@ See more about this project on [my website](https://matthewlam.me/deblurring/).
 | Blurry inputs       | n/a         | 0.7733    | 25.61|
 
 
-## Files in this repository
+## Repository Structure
 - [model.py](model.py): contains the U-net architecture with the ability to use either NAF and GELU blocks
 - [loss.py](loss.py): combined (L1 with SSIM) loss function, including an implementation of SSIM calculations
 - [dataset.py](dataset.py): code to prepare training, validation and test sets, and perform data augmentations (cropping and flipping)
