@@ -8,9 +8,8 @@ In this project, I built a nonlinear-activation-free (NAF) U-Net architecture fo
 
 I also ran an ablation study testing the effect of replacing the SimpleGate operations with GELU over shorter training durations. The NAF model outperformed the architecture with GELU activations (+0.75 PSNR, +0.023 SSIM), which is consistent with literature.
 
-See more about this project on [my website](https://matthewlam.me/deblurring/).
+See more about this project on <a href="https://matthewlam.me/deblurring/" target="_blank">my website</a>.
 
----
 
 ## Results
 
