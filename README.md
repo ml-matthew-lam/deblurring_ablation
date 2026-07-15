@@ -1,2 +1,2 @@
 In this project, I built a nonlinear-activation-free (NAF) U-Net architecture for motion deblurring. I then implemented a combined L1 and SSIM loss function and trained the model on the GOPRO_Large dataset, achieving an average 27.2 PSNR and 0.832 SSIM on the test set. I also tested the effect of replacing the SimpleGate operations with GELU over shorter training durations. The NAF model outperformed the architecture with GELU activations (+0.75 PSNR, +0.023 SSIM), which is consistent with literature.
-See more about this project on [https://matthewlam.me/deblurring/](my website).
+See more about this project on [my website](https://matthewlam.me/deblurring/).
