@@ -45,14 +45,15 @@ Download the GOPRO_Large.zip dataset. Extract it so that the GOPRO_Large folder 
 
 ## Training in Google Colab
 
-This project is optimized for training on GPU hardware via Google Colab. 
-Click the Open in Colab badge at the top of this README and follow the instruction in the notebook.
-(Note: The notebook handles the extraction of the dataset and cloning of this repository automatically).
+This project is built for training on Google Colab. 
 
-## Running Inference & Evaluation
+Click the *Open in Colab* badge at the top of this README and follow the instruction in the notebook.
+(Note: The notebook already contains a cell built into it that clones this repository).
 
-To benchmark a trained model locally, place your saved weights (e.g., NAF_best.pth) in the root directory and run the testing script:
+## Running Inference & Testing
+
+To test a trained model locally, download your saved weights (.pth file) from Google Drive, and place the file in the root directory (on your local device) and run the testing script:
 ```bash
 python test.py
 ```
-This script will evaluate the model against the test set, output a metrics.json file with inference statistics, and save visual comparisons of images of deblurring examples.
+This script will run the model on the test set, output some metrics in file named metrics.json, and save visual comparisons of images of deblurring examples.
