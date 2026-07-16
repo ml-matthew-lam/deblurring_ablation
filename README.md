@@ -52,7 +52,7 @@ Click the *Open in Colab* badge at the top of this README and follow the instruc
 
 ## Running Inference & Testing
 
-To test a trained model locally, download your saved weights (.pth file) from Google Drive, and place the file in the root directory (on your local device) and run the testing script:
+To test a trained model locally, download your saved weights (.pth file) from Google Drive, and place the file in the root directory (on your local device). Edit the **configurations** section in the main block of test.py and save the changes. Then, run the testing script:
 ```bash
 python test.py
 ```

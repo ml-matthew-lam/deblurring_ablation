@@ -11,7 +11,7 @@ from torch.utils.data import DataLoader
 import model as deblur_model
 from dataset import GoProDataset
 
-def run_benchmark(model, test_loader, device, output_dir="benchmark_results"):
+def run_benchmark(model, test_loader, device, output_dir):
     os.makedirs(output_dir, exist_ok=True)
     
     psnr_metric = PeakSignalNoiseRatio(data_range=1.0).to(device)
@@ -178,17 +178,21 @@ def run_benchmark(model, test_loader, device, output_dir="benchmark_results"):
     return report
 
 if __name__ == "__main__":
-    # ///////// SPECIFY MODEL HERE //////////////
+    # ///////////  CONFIGURATIONS  ///////////////
+    # specify what type of model / block type is being tested below:
     block_type = ["NAF", "GELU"][1]
+    # specify the filepath to the saved trained weights below:
+    weights_path = "./NAF_best.pth"
+    # specify the name of the folder where the results will be saved:
+    output_folder = "NAF_results"
+    # ///////////////////////////////////////////
+
    
     # set hardware device
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"initializing benchmark on: {device}")
     model = deblur_model.UNet(deblur_model.NAFBlock if block_type=="NAF" else deblur_model.GELUBlock, 32)
     
-    weights_path = "./NAF_best.pth" if block_type=="NAF" else "./GELU_best.pth"
-    output_folder = "NAF_results" if block_type=="NAF" else "GELU_results"
-
     # load weights from training
     model.load_state_dict(torch.load(weights_path, map_location=device))
     model.to(device)
