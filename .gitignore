@@ -4,7 +4,6 @@
 # weights and checkpoints
 /checkpoints/
 /weights/
-*.pth
 
 # results
 /NAF_results/

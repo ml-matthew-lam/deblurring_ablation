@@ -16,10 +16,12 @@ See more about this project on <a href="https://matthewlam.me/deblurring/" targe
 | Architecture Variant | Activation | SSIM | PSNR (dB) |
 |----------------------|------------|-----------|------|
 | 500-epoch NAF model | SimpleGate | ??? | ??? |
-| 200-epoch NAF model | GELU | 0.8318 | 27.18|
-| 200-epoch GELU model | SimpleGate | 0.8088 | 26.43|
+| 200-epoch NAF model | SimpleGate | 0.8318 | 27.18|
+| 200-epoch GELU model | GELU | 0.8088 | 26.43|
 | Blurry inputs | n/a | 0.7733 | 25.61|
 
+**Visual Comparison:**
+![Deblurring Example](visual_results.jpg)
 
 ## Repository Structure
 
@@ -29,6 +31,7 @@ The codebase is modularized to separate the architecture definitions from the tr
 * **`dataset.py`**: PyTorch Dataset class for the GOPRO_Large dataset, handling image cropping, flipping augmentations, and train/val/test splits.
 * **`train.ipynb`**: The primary training notebook containing the optimization loop, learning rate scheduling, and Weights & Biases (wandb) logging.
 * **`test.py`**: Evaluation script to benchmark model variants, calculate peak system RAM usage/inference time, and generate comparative image triplets (Blurry vs. Restored vs. Sharp).
+* **`NAF_best.pth`** and **`GELU_best.pth`**: Saved weights from my training runs. NAF_best contains weights from the 200-epoch NAF model. GELU_best contains weights from the 200-epoch GELU model.
   
 
 ## Setup and Installation
@@ -52,8 +55,14 @@ Click the *Open in Colab* badge at the top of this README and follow the instruc
 
 ## Running Inference & Testing
 
-To test a trained model locally, download your saved weights (.pth file) from Google Drive, and place the file in the root directory (on your local device). Edit the **configurations** section in the main block of test.py and save the changes. Then, run the testing script:
+**To test a trained model locally:** 
+1. Download your saved weights (.pth file) from Google Drive, and place the file in the root directory (on your local device). Alternatively, you can test the models with the weights provided in this repository (`NAF_best.pth` or `GELU_best.pth`). 
+2. Edit the **configurations** section in the main block of test.py and save the changes. Then, run the testing script:
 ```bash
 python test.py
 ```
 This script will run the model on the test set, output some metrics in file named metrics.json, and save visual comparisons of images of deblurring examples.
+
+## License
+
+This project is open-source and available under the [MIT License](LICENSE).
