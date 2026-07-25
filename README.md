@@ -38,7 +38,7 @@ The codebase is modularized to separate the architecture definitions from the tr
 
 **1. Clone the repository and install dependencies:**
 ```bash
-git clone [https://github.com/ml-matthew-lam/deblurring_ablation.git](https://github.com/ml-matthew-lam/deblurring_ablation.git)
+git clone https://github.com/ml-matthew-lam/deblurring_ablation.git
 cd deblurring_ablation
 pip install -r requirements.txt
 ```

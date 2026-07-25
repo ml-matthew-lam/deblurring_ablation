@@ -180,7 +180,7 @@ def run_benchmark(model, test_loader, device, output_dir):
 if __name__ == "__main__":
     # ///////////  CONFIGURATIONS  ///////////////
     # specify what type of model / block type is being tested below:
-    block_type = ["NAF", "GELU"][1]
+    block_type = ["NAF", "GELU"][0]
     # specify the filepath to the saved trained weights below:
     weights_path = "./NAF_best.pth"
     # specify the name of the folder where the results will be saved:
