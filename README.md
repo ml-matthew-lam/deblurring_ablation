@@ -4,12 +4,14 @@
 ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat&logo=pytorch&logoColor=white)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ml-matthew-lam/deblurring_ablation/blob/main/train.ipynb)
 
-In this project, I built a nonlinear-activation-free (NAF) U-Net architecture for motion deblurring. I then implemented a combined L1 and SSIM loss function and trained the model on the GOPRO_Large dataset, achieving an average 27.2 PSNR and 0.832 SSIM on the test set.
+In this project, I built a nonlinear-activation-free (NAF) U-Net architecture for motion deblurring. I then implemented a combined L1 and SSIM loss function and trained the model on the GOPRO_Large dataset, achieving an average 28.46 PSNR and 0.865 SSIM on the test set.
 
 I also ran an ablation study testing the effect of replacing the SimpleGate operations with GELU over shorter training durations. The NAF model outperformed the architecture with GELU activations (+0.75 PSNR, +0.023 SSIM), which is consistent with literature.
 
 See more about this project on <a href="https://matthewlam.me/deblurring/" target="_blank">my website</a>.
 
+Here is an animation of the deblurring model in action!
+<img src="sweep_combination.webp" width="60%">
 
 ## Results
 
