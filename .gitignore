@@ -8,6 +8,7 @@
 # results
 /NAF_results/
 /GELU_results/
+/long_NAF_results/
 /animations/
 
 # logs

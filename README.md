@@ -15,7 +15,7 @@ See more about this project on <a href="https://matthewlam.me/deblurring/" targe
 
 | Architecture Variant | Activation | SSIM | PSNR (dB) |
 |----------------------|------------|-----------|------|
-| 500-epoch NAF model | SimpleGate | ??? | ??? |
+| 600-epoch NAF model | SimpleGate | 0.8652 | 28.46 |
 | 200-epoch NAF model | SimpleGate | 0.8318 | 27.18|
 | 200-epoch GELU model | GELU | 0.8088 | 26.43|
 | Blurry inputs | n/a | 0.7733 | 25.61|

@@ -182,9 +182,9 @@ if __name__ == "__main__":
     # specify what type of model / block type is being tested below:
     block_type = ["NAF", "GELU"][0]
     # specify the filepath to the saved trained weights below:
-    weights_path = "./NAF_best.pth"
+    weights_path = "./long_NAF_best.pth"
     # specify the name of the folder where the results will be saved:
-    output_folder = "NAF_results"
+    output_folder = "long_NAF_results"
     # ///////////////////////////////////////////
 
    
