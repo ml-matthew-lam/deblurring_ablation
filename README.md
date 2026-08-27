@@ -11,6 +11,7 @@ I also ran an ablation study testing the effect of replacing the SimpleGate oper
 See more about this project on <a href="https://matthewlam.me/deblurring/" target="_blank">my website</a>.
 
 Here is an animation of the deblurring model in action!
+
 <img src="sweep_combination.webp" width="40%">
 
 ## Results
