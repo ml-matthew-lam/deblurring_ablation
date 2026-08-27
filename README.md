@@ -12,7 +12,7 @@ See more about this project on <a href="https://matthewlam.me/deblurring/" targe
 
 Here is an animation of the deblurring model in action!
 
-<img src="sweep_combination.webp" width="40%">
+<img src="misc/sweep_combination.webp" width="40%">
 
 ## Results
 
@@ -25,7 +25,7 @@ Here is an animation of the deblurring model in action!
 
 **Visual Comparison:**
 
-<img src="visual_results.png" width="80%">
+<img src="misc/visual_results.png" width="80%">
 
 ## Repository Structure
 
@@ -35,7 +35,7 @@ The codebase is modularized to separate the architecture definitions from the tr
 * **`dataset.py`**: PyTorch Dataset class for the GOPRO_Large dataset, handling image cropping, flipping augmentations, and train/val/test splits.
 * **`train.ipynb`**: The primary training notebook containing the optimization loop, learning rate scheduling, and Weights & Biases (wandb) logging.
 * **`test.py`**: Evaluation script to benchmark model variants, calculate peak system RAM usage/inference time, and generate comparative image triplets (Blurry vs. Restored vs. Sharp).
-* **`NAF_best.pth`** and **`GELU_best.pth`**: Saved weights from my training runs. NAF_best contains weights from the 200-epoch NAF model. GELU_best contains weights from the 200-epoch GELU model.
+* **`long_NAF_best.pth`**, `NAF_best.pth`**, and **`GELU_best.pth`**: Saved weights from my training runs. NAF_best contains weights from the 200-epoch NAF model. GELU_best contains weights from the 200-epoch GELU model.
   
 
 ## Setup and Installation
@@ -60,7 +60,7 @@ Click the *Open in Colab* badge at the top of this README and follow the instruc
 ## Running Inference & Testing
 
 **To test a trained model locally:** 
-1. Download your saved weights (.pth file) from Google Drive, and place the file in the root directory (on your local device). Alternatively, you can test the models with the weights provided in this repository (`NAF_best.pth` or `GELU_best.pth`). 
+1. Download your saved weights (.pth file) from Google Drive, and place the file in the root directory (on your local device). Alternatively, you can test the models with the weights provided in this repository (`long_NAF_best.pth`, `NAF_best.pth` or `GELU_best.pth`). 
 2. Edit the **configurations** section in the main block of test.py and save the changes. Then, run the testing script:
 ```bash
 python test.py
