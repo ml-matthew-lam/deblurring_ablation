@@ -24,7 +24,7 @@ Here is an animation of the deblurring model in action!
 | Blurry inputs | n/a | 0.7733 | 25.61|
 
 **Visual Comparison:**
-![Deblurring Example](visual_results.png)
+<img src="visual_results.png" width="80%">
 
 ## Repository Structure
 
